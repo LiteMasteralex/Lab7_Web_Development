@@ -12,19 +12,19 @@ app.use(morgan("dev"));
 let posts = [{
 	id: uuidv4(),
 	title: "New songs on my Profile.",
-	contnet: "Hey guys just wanted to let you know that I added a few of my new songs to my spotify profile. Be sure to check them out!",
+	content: "Hey guys just wanted to let you know that I added a few of my new songs to my spotify profile. Be sure to check them out!",
 	author: "Jakey",
 	publishDate : new Date('October 17, 2019')
 }, {
 	id: uuidv4(),
 	title: "Profanity Warning!",
-	contnet: "Please keep profanity to the minimum, we would like to avoid bannig people but we will if this continues.",
+	content: "Please keep profanity to the minimum, we would like to avoid bannig people but we will if this continues.",
 	author: "Moderator",
 	publishDate : new Date('October 10, 2019')
 }, {
 	id: uuidv4(),
 	title: "Happy Start of Spooktober!!!1!",
-	contnet: "Looking forward to all your spooks, and the sugar overdose I'll get from the candy my kids gather.",
+	content: "Looking forward to all your spooks, and the sugar overdose I'll get from the candy my kids gather.",
 	author: "Felix",
 	publishDate : new Date('October 1, 2019')
 }];
