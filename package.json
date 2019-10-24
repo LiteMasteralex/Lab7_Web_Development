@@ -1,0 +1,28 @@
+{
+  "name": "blog-post",
+  "version": "1.0.0",
+  "description": "Blog-post API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error no test especified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LiteMasteralex/Lab7_Web_Development.git"
+  },
+  "keywords": [
+    "blog-post",
+    "api"
+  ],
+  "author": "Alejandro Lara",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LiteMasteralex/Lab7_Web_Development/issues"
+  },
+  "homepage": "https://github.com/LiteMasteralex/Lab7_Web_Development#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "morgan": "^1.9.1",
+    "uuid": "^3.3.3"
+  }
+}
