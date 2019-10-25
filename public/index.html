@@ -11,7 +11,7 @@
 	<div class="searchQuery">
 		<label for="query">Search by Author:</label>
 		<input type="text" name="query">
-		<input type="submit" id="searchAuthor" value="Seacrh">
+		<input type="submit" id="searchAuthor" value="Search">
 	</div>
 	<main id="post_list">
 	</main>
@@ -38,7 +38,9 @@
 				<fieldset>
 					<legend>Update a Post</legend>
 					<label for="id">Select Post:</label>
-					<select></select>
+					<select>
+						<option value="">Select Post</option>
+					</select>
 					<div>
 						<label for="title">Title</label>
 						<input type="text" name="title" class="formElement">
@@ -60,7 +62,9 @@
 					<legend>Delete a Post</legend>
 					<div>
 						<label for="id">Select Post:</label>
-						<select></select>
+						<select>
+							<option value="">Select Post</option>
+						</select>
 					</div>
 					<input type="submit" class="formButton" value="Delete">
 				</fieldset>

@@ -1,5 +1,12 @@
 console.log("Script has been loaded")
-let blog_post_id = [];
+let blog_posts = [];
+
+let updateSelect = function() {
+	blog_posts.forEach( function(post) {
+		let option = `<option value=${post.id}>${post.title.substr(0, 15)}...</option>`;
+		$("select").append(option);
+	});
+}
 
 let init = function() {
 	$.ajax({
@@ -8,7 +15,7 @@ let init = function() {
 		dataType: "json",
 		success: function(response) {
 			response.forEach(function(post) {
-				blog_post_id.push(post.id);
+				blog_posts.push(post);
 				let blog_t = `<div class="post_title"><h2>${post.title}</h2></div>`;
 				let blog_h = `<div class="blog_header">${blog_t}<div class="user_image"><img src="" alt="user_image"></div></div>`;
 				let blog_c = `<div class="blog_content"><p>${post.content}</p></div>`;
@@ -16,6 +23,7 @@ let init = function() {
 				let newHtml = `<div class="blog_container">${blog_h}${blog_c}${blog_f}`;
 				$("main").append(newHtml);
 			});
+			updateSelect();
 		},
 		error: function(error) {
 			console.log(error);
