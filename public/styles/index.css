@@ -1,17 +1,45 @@
 body {
 	background-color: lightgray;
-	margin: 0;
+	/* padding: 1%; */
+	/* margin: 0; */
 	font-size: 16px;
 	display: inline;
 	font-family: 'Bookman Old Style';
+}
+header {
+	margin: 0 2% 2% 2%;
 }
 main {
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
+	margin: 1%;
 }
 h2 {
 	margin: 1%;
+}
+section {
+	margin: 2%;
+	padding-right: 3%;
+}
+form {
+	font-family: 'Bookman Old Style';
+}
+fieldset {
+	border: 2px dashed black;
+	/* margin: 20px; */
+	/* padding: 20px; */
+}
+textarea {
+	width: 91%;
+	padding: 5px 10px;
+	margin: 1%;
+}
+div>select {
+	width: 70%;
+}
+.searchQuery {
+	padding-left: 2%;
 }
 .blog_container {
   	padding: 1% 1% 0% 1%;
@@ -20,6 +48,8 @@ h2 {
   	width: 28%;
   	margin: 1%;
   	background-color: white;
+  	display: flex;
+  	flex-direction: column;
 }
 .blog_header {
 	border-bottom: 2px dashed black;
@@ -48,4 +78,29 @@ h2 {
 	justify-content: space-between;
 	font-size: 12px;
 	color: darkgray;
+	margin-top: auto;
+}
+#post_creation {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+.form_container {
+	width: 45%
+}
+.form_container_del {
+	width: 30%
+}
+.formElement, select {
+	width: 35%;
+	padding: 5px 10px;
+	margin: 1%;
+}
+.formButton {
+	float: right;
+	margin: 1%;
+}
+#post_delete {
+	display: flex;
+	justify-content: space-around;
 }
