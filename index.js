@@ -33,6 +33,28 @@ app.get("/blog-posts", function(req, res) {
 	return res.status(200).json(posts);
 });
 
+app.get("/blog-post?author=value", function(req, res) {
+	let author = req.params.author
+	if (author == "") {
+		res.statusMessage = "No author was provided for the search";
+		return res.status(406).json({
+			message: "No author was provided for the search",
+			status: 406
+		});
+	}
+	let post_list = posts.find(object => object.author == author);
+	if(post_list == undefined) {
+		res.statusMessage = "Author provided does not exist";
+		return res.status(404).json({
+			message: "Author provided does not exist",
+			status: 404
+		});
+	}
+
+	post_list = posts.filter(object => object.author == author);
+	return res.status(200).json(post_list);
+});
+
 app.listen("8080", function() {
 	console.log("Welcome to the Blog-Post server.")
 });
