@@ -91,6 +91,48 @@ $("#new_post").on("submit", function(event) {
 	});
 });
 
+$("#update_post").on("submit", function(event) {
+	event.preventDefault();
+	$("#update_post > fieldset > .error_message").remove()
+	$("#update_post > fieldset > .success_message").remove()
+	new_post = {
+		id: $("#up_list").val()
+	};
+	let author = $("#up_author").val()
+	if(author != "") {
+		new_post.author = author;
+	}
+	let title = $("#up_title").val()
+	if(title != "") {
+		new_post.title = title;
+	}
+	let content = $("#up_content").val()
+	if(content != "") {
+		new_post.content = content;
+	}
+	if($("#date").prop("checked")) {
+		new_post.publishDate = new Date();
+	}
+	$.ajax({
+		url: "/blog-posts/" + new_post.id,
+		method: "PUT",
+		dataType: "json",
+		contentType: "application/json; charset=utf-8",
+		data: JSON.stringify(new_post),
+		success: function(response) {
+			$("#update_post > fieldset").append(`<span class="success_message">Succesfully updated post.</span>`);
+			$("#up_author").val("");
+			$("#up_title").val("");
+			$("#up_content").val("");
+			init();
+			$("#searchValue").val("");
+		},
+		error: function(error) {
+			$("#update_post > fieldset").append(`<span class="error_message">${error.statusText}</span>`)
+		}
+	});
+});
+
 $("#del_post").on("submit", function(event) {
 	event.preventDefault();
 	$("#del_post > fieldset > .error_message").remove()

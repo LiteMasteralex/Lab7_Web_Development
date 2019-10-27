@@ -40,15 +40,16 @@
 					<legend>Update a Post</legend>
 					<label for="id">Select Post:</label>
 					<select id="up_list"></select>
+					<input type="checkbox" id="date"> Update date?
 					<div>
 						<label for="title">Title</label>
-						<input type="text" name="title" class="formElement">
+						<input type="text" name="title" class="formElement" id="up_title">
 						<label for="author">Author</label>
-						<input type="text" name="author" class="formElement">
+						<input type="text" name="author" class="formElement" id="up_author">
 					</div>
 					<label for="content">Content</label>
 					<br>
-					<textarea></textarea>
+					<textarea id="up_content"></textarea>
 					<input type="submit" class="formButton" value="Save">
 				</fieldset>
 			</form>
