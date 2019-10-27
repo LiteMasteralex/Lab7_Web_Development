@@ -42,7 +42,7 @@ let init = function() {
 
 $("#searchAuthor").on("click", function() {
 	let author = $("#searchValue").val();
-	$(".error_message").remove()
+	$(".searchQuery > .error_message").remove()
 	$.ajax({
 		url: "/blog-post?author=" + author, 
 		method: "GET",
@@ -61,5 +61,35 @@ $("#clearSearch").on("click", function() {
 	$("#searchValue").val("");
 });
 
+
+$("#new_post").on("submit", function(event) {
+	event.preventDefault();
+	$("#new_post > fieldset > .error_message").remove()
+	$("#new_post > fieldset > .success_message").remove()
+	let newPost = {
+		author: $("#new_author").val(),
+		title: $("#new_title").val(),
+		content: $("#new_content").val()
+	};
+	$.ajax({
+		url: "/blog-posts",
+		method: "POST",
+		dataType: "json",
+		contentType: "application/json; charset=utf-8",
+		data: JSON.stringify(newPost),
+		success: function(response) {
+			$("#new_post > fieldset").append(`<span class="success_message">Succesfully created post.</span>`);
+			$("#new_author").val("");
+			$("#new_title").val("");
+			$("#new_content").val("");
+			if($("#searchValue").val() == "") {
+				init();
+			}
+		},
+		error: function(error) {
+			$("#new_post > fieldset").append(`<span class="error_message">${error.statusText}</span>`)
+		}
+	})
+});
 
 init();

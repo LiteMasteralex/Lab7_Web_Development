@@ -108,3 +108,7 @@ div>select {
 	font-size: 14px;
 	color: red;
 }
+.success_message {
+	font-size: 14px;
+	color: green;
+}

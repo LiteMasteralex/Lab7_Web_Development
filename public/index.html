@@ -18,24 +18,24 @@
 	</main>
 	<section id="post_creation">
 		<span class="form_container">
-			<form>
+			<form id="new_post">
 				<fieldset>
 					<legend>Create a Post</legend>
 					<div>
 						<label for="title">Title</label>
-						<input type="text" name="title" class="formElement">
+						<input type="text" name="title" class="formElement" id="new_title">
 						<label for="author">Author</label>
-						<input type="text" name="author" class="formElement">
+						<input type="text" name="author" class="formElement" id ="new_author">
 					</div>
 					<label for="content">Content</label>
 					<br>
-					<textarea></textarea>
+					<textarea id="new_content"></textarea>
 					<input type="submit" class="formButton" value="Save">
 				</fieldset>
 			</form>
 		</span>
 		<span class="form_container">
-			<form>
+			<form id="update_post">
 				<fieldset>
 					<legend>Update a Post</legend>
 					<label for="id">Select Post:</label>
@@ -56,7 +56,7 @@
 	</section>
 	<section id="post_delete">
 		<span class="form_container_del">
-			<form>
+			<form id="del_post">
 				<fieldset>
 					<legend>Delete a Post</legend>
 					<div>
