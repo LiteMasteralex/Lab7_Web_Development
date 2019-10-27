@@ -96,6 +96,52 @@ app.delete("/blog-posts/:id", jsonParser, function(req, res) {
 	return res.status(200).end();
 });
 
+app.put("/blog-posts/:id", jsonParser, function(req, res) {
+	let new_post = req.body;
+	console.log(new_post.id);
+	if(new_post.id == undefined) {
+		res.statusMessage = "Missing id in body";
+		res.status(406).json({
+			message: "Missing Id", 
+			status: 406
+		});
+	};
+	if(new_post.id != req.params.id) {
+		res.statusMessage = "Param missmatch";
+		res.status(409).json({
+			message: "Param missmatch",
+			status: 409
+		});
+	};
+	let post = posts.find(object => object.id == new_post.id);
+	if (post == undefined) {
+		res.statusMessage = "No post exist with given id.";
+		return res.status(404).json({
+			message: "No post exist with given id.",
+			status: 404
+		});
+	};
+	posts.forEach(function(entry) {
+		if(entry.id == new_post.id) {
+			if(new_post.author != undefined) {
+				entry.author = new_post.author
+			};
+			if(new_post.title != undefined) {
+				entry.title = new_post.title;
+			}
+			if(new_post.content != undefined) {
+				entry.content = new_post.content
+			}
+			if(new_post.publishDate != undefined) {
+				entry.publishDate = new_post.publishDate
+			}
+		}
+	});
+	post = posts.find(object => object.id == new_post.id);
+	return res.status(202).json(post);
+
+});
+
 app.listen("8080", function() {
 	console.log("Welcome to the Blog-Post server.")
 });
