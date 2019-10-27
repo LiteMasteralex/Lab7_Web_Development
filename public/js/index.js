@@ -82,14 +82,33 @@ $("#new_post").on("submit", function(event) {
 			$("#new_author").val("");
 			$("#new_title").val("");
 			$("#new_content").val("");
-			if($("#searchValue").val() == "") {
-				init();
-			}
+			init();
+			$("#searchValue").val("");
 		},
 		error: function(error) {
 			$("#new_post > fieldset").append(`<span class="error_message">${error.statusText}</span>`)
 		}
-	})
+	});
+});
+
+$("#del_post").on("submit", function(event) {
+	event.preventDefault();
+	$("#del_post > fieldset > .error_message").remove()
+	$("#del_post > fieldset > .success_message").remove()
+	let id = $("#dl_list").val();
+	$.ajax({
+		url: "/blog-posts/" + id,
+		method: "DELETE",
+		success: function() {
+			$("#del_post > fieldset").append(`<span class="success_message">Succesfully deleted post.</span>`);
+			init();
+			$("#searchValue").val("");
+		},
+		error: function(error) {
+			console.log(error);
+			$("#del_post > fieldset").append(`<span class="error_message">${error.statusText}</span>`)
+		}
+	});
 });
 
 init();
