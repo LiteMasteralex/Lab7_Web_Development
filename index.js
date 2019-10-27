@@ -5,6 +5,7 @@ let bodyParser = require('body-parser');
 let uuidv4 = require('uuid/v4');
 
 let app = express();
+let jsonParser = bodyParser.json();
 
 app.use(express.static('public'));
 app.use(morgan("dev"));
@@ -28,6 +29,16 @@ let posts = [{
 	author: "Felix",
 	publishDate : new Date('October 1, 2019')
 }];
+
+
+let checkAttributes = function(post) {
+	for(let attr in post) {
+		if (post[attr] == "") {
+			return true;
+		}
+	}
+	return false;
+};
 
 app.get("/blog-posts", function(req, res) {
 	return res.status(200).json(posts);
@@ -54,6 +65,22 @@ app.get("/blog-post", function(req, res) {
 	post_list = posts.filter(object => object.author == author);
 	return res.status(200).json(post_list);
 });
+
+app.post("/blog-posts", jsonParser, function(req, res) {
+	console.log(req.body);
+	let newPost = req.body;
+	if(!(newPost.title && newPost.author && newPost.content) && checkAttributes(newPost)) {
+		res.statusMessage = "Missing field in body";
+		return res.status(406).json({
+			message: "Missing field",
+			status: 406
+		});	
+	};
+	newPost.id = uuidv4();
+	newPost.publishDate = new Date();
+	posts.push(newPost);
+	return res.status(201).json(newPost);
+})
 
 app.listen("8080", function() {
 	console.log("Welcome to the Blog-Post server.")
