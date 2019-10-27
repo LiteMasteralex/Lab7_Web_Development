@@ -33,8 +33,8 @@ app.get("/blog-posts", function(req, res) {
 	return res.status(200).json(posts);
 });
 
-app.get("/blog-post?author=value", function(req, res) {
-	let author = req.params.author
+app.get("/blog-post", function(req, res) {
+	let author = req.query.author
 	if (author == "") {
 		res.statusMessage = "No author was provided for the search";
 		return res.status(406).json({
