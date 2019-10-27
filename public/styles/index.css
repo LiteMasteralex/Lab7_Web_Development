@@ -104,3 +104,7 @@ div>select {
 	display: flex;
 	justify-content: space-around;
 }
+.error_message {
+	font-size: 14px;
+	color: red;
+}

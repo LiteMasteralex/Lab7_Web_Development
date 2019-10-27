@@ -42,7 +42,7 @@ let init = function() {
 
 $("#searchAuthor").on("click", function() {
 	let author = $("#searchValue").val();
-	console.log(author)
+	$(".error_message").remove()
 	$.ajax({
 		url: "/blog-post?author=" + author, 
 		method: "GET",
@@ -51,7 +51,7 @@ $("#searchAuthor").on("click", function() {
 			updatePots(response);
 		},
 		error: function(error) {
-			console.log(error);
+			$(".searchQuery").append(`<span class="error_message">${error.statusText}</span>`)
 		}
 	});
 });
