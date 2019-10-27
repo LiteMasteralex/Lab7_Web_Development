@@ -67,7 +67,6 @@ app.get("/blog-post", function(req, res) {
 });
 
 app.post("/blog-posts", jsonParser, function(req, res) {
-	console.log(req.body);
 	let newPost = req.body;
 	if(!(newPost.title && newPost.author && newPost.content) && checkAttributes(newPost)) {
 		res.statusMessage = "Missing field in body";
@@ -80,7 +79,22 @@ app.post("/blog-posts", jsonParser, function(req, res) {
 	newPost.publishDate = new Date();
 	posts.push(newPost);
 	return res.status(201).json(newPost);
-})
+});
+
+app.delete("/blog-posts/:id", jsonParser, function(req, res) {
+	let id = req.params.id;
+	let post = posts.find(object => object.id == id);
+	if (post == undefined) {
+		res.statusMessage = "No post exist with given id.";
+		return res.status(404).json({
+			message: "No post exist with given id.",
+			status: 404
+		});
+	}
+
+	posts = posts.filter(object => object.id != id);
+	return res.status(200).end();
+});
 
 app.listen("8080", function() {
 	console.log("Welcome to the Blog-Post server.")
